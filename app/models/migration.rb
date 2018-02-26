@@ -32,6 +32,14 @@ class Migration < ApplicationRecord
 		where(["id < ?", "#{query.to_i}"])
 	}
 
+	scope :order_by_id_asc, lambda {
+		order("id ASC")
+	}
+
+	scope :order_by_id_desc, lambda {
+		order("id DESC")
+	}
+
 
 	# Engineer
 
@@ -63,6 +71,15 @@ class Migration < ApplicationRecord
 		where(["engineer_id < ?", "#{query.to_i}"])
 	}
 
+	scope :order_by_engineer_id_asc, lambda {
+		order("engineer_id ASC")
+	}
+
+	scope :order_by_engineer_id_desc, lambda {
+		order("engineer_id DESC")
+	}
+
+
 
 	# Client
 
@@ -92,6 +109,14 @@ class Migration < ApplicationRecord
 
 	scope :client_id_less_than, lambda { |query|
 		where(["client_id < ?", "#{query.to_i}"])
+	}
+
+	scope :order_by_client_id_asc, lambda {
+		order("client_id ASC")
+	}
+
+	scope :order_by_client_id_desc, lambda {
+		order("client_id DESC")
 	}
 
 
@@ -125,6 +150,14 @@ class Migration < ApplicationRecord
 		where(["file_count < ?", "#{query.to_i}"])
 	}
 
+	scope :order_by_file_count_asc, lambda {
+		order("file_count ASC")
+	}
+
+	scope :order_by_file_count_desc, lambda {
+		order("file_count DESC")
+	}
+
 
 	# Elapsed Time
 
@@ -137,10 +170,18 @@ class Migration < ApplicationRecord
 	}
 
 	scope :elapsed_time_greater_than, lambda { |query|
-		where(["elapsed > ?", "#{query.to_i}"])
+		where(["elapsed_time > ?", "#{query.to_i}"])
 	}
 
 	scope :file_count_less_than, lambda { |query|
-		where(["file_count < ?", "#{query.to_i}"])
+		where(["elapsed_time < ?", "#{query.to_i}"])
+	}
+
+	scope :order_by_elapsed_time_asc, lambda {
+		order("elapsed_time ASC")
+	}
+
+	scope :order_by_elapsed_time_desc, lambda {
+		order("elapsed_time DESC")
 	}
 end

@@ -33,6 +33,13 @@ class Engineer < ApplicationRecord
 		where(["id < ?", "#{query.to_i}"])
 	}
 
+	scope :order_by_id_asc, lambda {
+		order(["id ASC"])
+	}
+
+	scope :order_by_id_desc, lambda {
+		order(["id DESC"])
+	}
 
 	# First Name
 
@@ -56,27 +63,43 @@ class Engineer < ApplicationRecord
 	  	where(["name not in (?)", arg])
 	}
 
+	scope :order_by_first_name_asc, lambda {
+		order(["first_name ASC"])
+	}
+
+	scope :order_by_first_name_desc, lambda {
+		order(["first_name DESC"])
+	}
+
 
 	# Last Name
 
 	scope :last_name_equals, lamda { |query|
-		where(["name=?", "#{query}"])
+		where(["last_name=?", "#{query}"])
 	}
 
 	scope :last_name_like, lambda { |query|
-		where(["name LIKE ?", "%#{query}%"])
+		where(["last_name LIKE ?", "%#{query}%"])
 	}
 
 	scope :last_name_in, lambda { |arg|
 		arg = arg.keys.map { |k| arg[k] }.join(',') if arg.is_a?(Hash)
 		arg = arg.join(',') if arg.is_a(Array)
-	  	where(["name in (?)", arg])
+	  	where(["last_name in (?)", arg])
 	}
 
 	scope :last_name_not_in, lambda { |arg|
 		arg = arg.keys.map { |k| arg[k] }.join(',') if arg.is_a?(Hash)
 		arg = arg.join(',') if arg.is_a(Array)
-	  	where(["name not in (?)", arg])
+	  	where(["last_name not in (?)", arg])
+	}
+
+	scope :order_by_last_name_asc, lambda {
+		order("last_name ASC")
+	}
+
+	scope :order_by_last_name_desc, lambda {
+		order("last_name DESC")
 	}
 
 end

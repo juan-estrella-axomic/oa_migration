@@ -32,12 +32,12 @@ class Instance < ApplicationRecord
 	  	where(["id not in (?)", "#{arg}"])
 	}
 
-	scope :order_by_id_desc, lambda { |option|
-		order(["id DESC"])
+	scope :order_by_id_desc, lambda {
+		order("id DESC")
 	}
 
-	scope :order_by_id_asc, lambda { |option|
-		order(["id ASC"])
+	scope :order_by_id_asc, lambda {
+		order("id ASC")
 	}
 
 	# URL
@@ -57,6 +57,15 @@ class Instance < ApplicationRecord
 		arg = arg.join(',') if arg.is_a?(Array)
 	  	where(["url not in (?)", "#{arg}"])
 	}
+
+	scope :order_by_url_asc, lambda {
+		order("url ASC")
+	}
+
+	scope :order_by_url_desc, lambda {
+		order("url DESC")
+	}
+
 
 	# Token
 	scope :token_equal, lambda { |query|

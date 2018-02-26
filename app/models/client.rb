@@ -33,6 +33,14 @@ class Client < ApplicationRecord
 		where(["id < ?", "#{query.to_i}"])
 	}
 
+	scope :order_by_id_asc, lambda {
+		order("id ASC")
+	}
+
+	scope :order_by_id_desc, lambda {
+		order("id DESC")
+	}
+
 	# Name
 
 	scope :name_equals, lamda { |query|
@@ -48,4 +56,13 @@ class Client < ApplicationRecord
 		arg = arg.join(',') if arg.is_a(Array)
 	  	where(["name in (?)", arg])
 	}
+
+	scope :order_by_name_asc, lambda {
+		order("name ASC")
+	}
+
+	scope :order_by_name_desc, lambda {
+		order("name DESC")
+	}
+
 end
